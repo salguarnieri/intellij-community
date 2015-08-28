@@ -38,11 +38,25 @@ public abstract class PluggableFileWatcher {
 
   public abstract boolean isSettingRoots();
 
+  /**
+   *
+   * @return the manual watch roots. All returned paths will be canonical.
+   */
   @NotNull
   public abstract List<String> getManualWatchRoots();
 
+  /**
+   * The inputs to this method must be absolute and free of symbolic links.
+   *
+   * @param recursive list of canonical paths to watch recursively
+   * @param flat list of canonical paths to watch non-recursively
+   */
   public abstract void setWatchRoots(@NotNull List<String> recursive, @NotNull List<String> flat);
 
+  /**
+   * @param file a canonical file
+   * @return true if the file is being watched by this file watcher, false otherwise
+   */
   public abstract boolean isWatched(@NotNull VirtualFile file);
 
   public abstract void resetChangedPaths();
